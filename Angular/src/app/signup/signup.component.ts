@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   invalidSignupForm: boolean = false;
+  users = ['user', 'admin', 'manager'];
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
