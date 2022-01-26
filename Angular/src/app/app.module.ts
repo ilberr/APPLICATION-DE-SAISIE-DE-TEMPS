@@ -8,12 +8,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { ListUserComponent } from './user/list-user/list-user.component';
-import { AddUserComponent } from './user/add-user/add-user.component';
 import { ApiService } from './service/api.service';
 import { TokenInterceptor } from './core/interceptor';
 import { SignupComponent } from './signup/signup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminComponent } from './user/admin/admin.component';
+import { ManagerComponent } from './user/manager/manager.component';
+import { EmployeeComponent } from './user/employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +22,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    ListUserComponent,
-    AddUserComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent,
+    ManagerComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    
   ],
   providers: [ApiService, {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

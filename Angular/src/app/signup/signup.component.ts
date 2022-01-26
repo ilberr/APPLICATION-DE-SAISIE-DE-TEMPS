@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -13,13 +14,17 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   invalidSignupForm: boolean = false;
   users = ['user', 'admin', 'manager'];
+  labelPosition: 'user' | 'admin' | 'manager' = 'user';
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
     window.localStorage.removeItem('token');
     this.signupForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      Email: ['', Validators.required],
     });
   }
 
