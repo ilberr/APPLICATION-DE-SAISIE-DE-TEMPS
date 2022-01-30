@@ -20,8 +20,16 @@ export class ApiService {
     return this.http.get<ApiResponse>(this.baseUrl);
   }
 
+  getUser(user: User) : Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + user);
+  }
+
   getUserById(id: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.baseUrl + id);
+  }
+
+  getUserrole(user: User): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + user.role);
   }
 
   createUser(user: User): Observable<ApiResponse> {
