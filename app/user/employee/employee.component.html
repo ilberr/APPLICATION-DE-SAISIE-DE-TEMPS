@@ -1,0 +1,54 @@
+<table class="gridtable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Project</th>
+        <th>Start Day</th>
+        <th>End Day</th>
+        <th>Period</th>
+        <th>Manager</th>
+      </tr>
+    </thead>
+    <br/>
+    <tbody>
+      <tr *ngFor="let work of workspaces">
+        <td>
+          {{work.userId}}
+        </td>
+        <td>
+          {{work.name}}
+        </td>
+        <td>
+          {{work.project}}
+        </td>
+        <td>
+          
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="work.start"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          />
+        </td>
+        <td>
+          {{work.end}}
+        </td>
+        <td>
+          {{work.period}}
+        </td>
+        <td>
+          {{work.manager}}
+          
+        </td>
+        <td>
+          <button class="btn-print" (click)="printPDF(work)">
+            Download PDF
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

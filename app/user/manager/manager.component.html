@@ -1,0 +1,50 @@
+<table class="gridtable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Project</th>
+        <th>Start Day</th>
+        <th>End Day</th>
+        <th>Period</th>
+        <th>Employee</th>
+      </tr>
+    </thead>
+    <br/>
+    <tbody>
+      <tr *ngFor="let work of workspaces">
+        <td>
+          {{work.userId}}
+        </td>
+        <td>
+          {{work.name}}
+        </td>
+        <td>
+          {{work.project}}
+        </td>
+        <td>
+          {{work.start}}
+        </td>
+        <td>
+          {{work.end}}
+        </td>
+        <td>
+          {{work.period}}
+        </td>
+        <td>
+          {{work.employees}}
+          
+        </td>
+        <td>
+            <button class="btn-print" (click)="printPDF(work)">
+              Download PDF
+            </button>
+          </td>
+        <td>
+          <button class="btn-danger" (click)="deleteEvent(work)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

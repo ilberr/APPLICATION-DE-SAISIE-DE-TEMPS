@@ -1,0 +1,25 @@
+
+table.gridtable {
+font-family: Inter;
+font-size:21px;
+color:#333333;
+border-width: 1px;
+border-color: #666666;
+border-collapse: collapse;
+
+object-fit: cover;
+}
+
+
+table.gridtable td{
+border-width: 1px;
+padding: 8px;
+border-style: solid;
+}
+.btn-print{
+
+color: white;
+border-radius: 4px;
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+background: rgb(115, 33, 182); 
+}
