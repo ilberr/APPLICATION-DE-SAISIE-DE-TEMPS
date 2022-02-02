@@ -1,0 +1,62 @@
+<nav class="navbar">
+
+    <div class="toolbar">
+  
+      <ul>
+        <li><a class="navbar-brand" href="#"><span id='logo'>MyAgenda</span></a></li>
+      </ul>
+      <button id="logout" type="button" (click)="logout()" [routerLink]="['../home']" >LOGOUT</button>
+    </div>
+    <div id="users">
+      <a href="#">LIST USERS</a>
+    </div>
+  </nav>
+  <div>
+    <div class="container">
+      <span class="text-overview">Your Dashboard</span>
+       <table class="table table-bordered">
+            <tr>
+              <th>Employees</th>
+              <th>Project</th>
+              <th>Manager</th>
+              <th>Starts at</th>
+              <th>Ends at</th>
+              <th width="220px">Action</th>
+            </tr>
+            <tr *ngFor="let user of users" >
+              <td>
+                {{ user.name }}
+              </td>
+              <td>
+                  {{user.project}}
+              </td>
+              <td>
+                {{user.manager}}
+              </td>
+              <td>
+                {{user.start}}
+              </td>
+              <td>
+                {{user.end}}
+              </td>
+              <td>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-danger" (click)="delete(user)">Delete</button>
+                <a href="#" class="btn btn-secondary">Export PDF</a>
+
+              </td>
+
+            </tr>
+          
+        </table>
+      <div>
+        <!-- Add subcomponents responsible for displaying and manipulating workspace 
+        content and functionality for different identities.
+      <app-manager></app-manager> -->
+        
+      </div>
+      
+      <span class="copy-right">© 2020 - All rights reserved</span>
+    </div>
+  </div>
+  

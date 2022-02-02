@@ -1,0 +1,26 @@
+<div>
+    <div class="container">
+      <div class="side-bar">
+        <img src="../../assets/default.jpg" alt="user's protrait" class="protrait" width="50" height="50"/>
+        <div class="line"></div>
+        <!-- <img src="data:image" alt="home" class="icon-home"/> -->
+        <fa-icon [icon]="faHome" alt="home" class="icon-home" size="2x" ></fa-icon>
+        <fa-icon [icon]="faClipboard" alt="assignment" class="icon-assignment" size="2x"></fa-icon>
+        <fa-icon [icon]="faQuestionCircle" alt="help_outline" class="icon-helper" size="2x"></fa-icon>
+        <fa-icon [icon]="faCog" alt="settings" class="icon-setting" size="2x"></fa-icon>
+      </div>
+      <span class="text-overview">Overview</span>
+      
+      <div class="table-responsive">
+        <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="100%" color=#987cb9 SIZE=10>
+        <br/>
+        <br/>
+        <app-employee *ngIf="isEmployee"></app-employee>
+        <app-manager *ngIf="isManager"></app-manager>
+        <app-admin *ngIf="isAdmin"></app-admin>
+      </div>
+      
+      <span class="copy-right">© 2020 - All rights reserved</span>
+    </div>
+  </div>
+  
