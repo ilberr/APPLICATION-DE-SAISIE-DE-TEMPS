@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { startOfDay, endOfDay, format} from 'date-fns';
 
 @Component({
@@ -7,6 +7,7 @@ import { startOfDay, endOfDay, format} from 'date-fns';
   styleUrls: ['./manager.component.scss']
 })
 export class ManagerComponent implements OnInit {
+
 
   constructor() { }
 

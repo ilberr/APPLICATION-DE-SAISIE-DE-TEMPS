@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  
+
+  isLogin: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  doStart(){
+    if(!this.isLogin){
+      alert("Please Login!!")
+    }else{
+      console.log(" ok!")
+    }
+  }
 }

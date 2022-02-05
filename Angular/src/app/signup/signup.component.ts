@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Register } from '../model/user.model';
@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   };
   validSignup = false;
   error='';
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
