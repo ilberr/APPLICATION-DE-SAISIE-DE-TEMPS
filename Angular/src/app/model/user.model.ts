@@ -6,7 +6,10 @@ export interface User {
   lastname: string;
   fullname: string;
   enabled: boolean;
-  role_id: number;
+  role: {
+    id:number;
+    label:string;
+  };
   createdAt: string;
   manager_id: number;
 }

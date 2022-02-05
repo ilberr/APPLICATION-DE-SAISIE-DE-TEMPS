@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   };
   validSignup = false;
   error='';
+  roleid: any;
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
