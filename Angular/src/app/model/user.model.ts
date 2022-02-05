@@ -6,9 +6,32 @@ export interface User {
   lastname: string;
   fullname: string;
   enabled: boolean;
-  role_id: number;
+  role: {
+    id:number;
+    label:string;
+  };
   createdAt: string;
   manager_id: number;
+}
+
+export interface Employee{
+  userId: number,
+  name: string,
+  project: string,
+  start: Date,
+  end: Date,
+  period: string,
+  manager: Manager
+}
+
+export interface Manager{
+  userId: number,
+  name: string,
+  project: string,
+  start: Date,
+  end: Date,
+  period: string,
+  employees: Employee[]
 }
 
 export interface Role{

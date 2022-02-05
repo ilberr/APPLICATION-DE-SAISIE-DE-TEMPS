@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit {
   faQuestionCircle = faQuestionCircle;
   // L'identité ici peut être déterminée par 
   // l'identité de l'utilisateur accédant au backend.
-  isEmployee = false; 
-  isManager = true;
+  isEmployee = true; 
+  isManager = false;
   isAdmin = false;
 
   constructor() { }

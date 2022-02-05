@@ -12,31 +12,31 @@
     </thead>
     <br/>
     <tbody>
-      <tr *ngFor="let work of workspaces">
+      <tr>
         <td>
-          {{work.userId}}
+          {{employee.userId}}
         </td>
         <td>
-          {{work.name}}
+          {{employee.name}}
         </td>
         <td>
-          {{work.project}}
+          {{employee.project}}
         </td>
         <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="work.start"/>
+          <input type="datetime-local" class="form-control form-date" [(ngModel)]="employee.start"/>
         </td>
         <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="work.end"/>
+          <input type="datetime-local" class="form-control form-date" [(ngModel)]="employee.end"/>
         </td>
         <td>
-          {{work.period}}
+          {{employee.period}}
         </td>
         <td>
-          {{work.manager}}
+          {{employee.manager}}
           
         </td>
         <td>
-          <button class="btn btn-print" (click)="printPDF(work)">
+          <button class="btn btn-print" (click)="printPDF(employee)">
             Download PDF
           </button>
         </td>

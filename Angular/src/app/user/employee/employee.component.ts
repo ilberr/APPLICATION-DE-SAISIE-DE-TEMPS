@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { startOfDay, endOfDay, format} from 'date-fns';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Employee, Manager, Project, User } from 'src/app/model/user.model';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-employee',
@@ -8,44 +10,42 @@ import { startOfDay, endOfDay, format} from 'date-fns';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  employee: Employee;
+  manager: Manager;
+  project: Project;
+
+  @Input()
+  isEmployee = true;
+
+  @Output()
+  employeeChange = new EventEmitter<boolean>();
+
+  constructor(public apiService: ApiService) {}
 
   ngOnInit(): void {
   }
 
+  getUser(): void{
+    this.apiService.getUser().subscribe(
+      (response: User) => {
+        this.employee.userId = response.id;
+        this.employee.name = response.fullname;
+        this.manager.userId = response.manager_id;
+        this.project.manager_id = response.manager_id;
+        this.employee.project = this.project.title;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+      
+    );
+  }
+
   printPDF(work:any){
-    //this.workspaces
     console.log("printPDF")
 
   }
-  workspaces: any[] = [
-    {
-      userId: 123456789,
-      name: 'Tom',
-      project: 'project01',
-      start: format(startOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      period: '4 months',
-      manager: 'Jack'
-    },
-    {
-      userId: 123456789,
-      name: 'Tom1',
-      project: 'project02',
-      start: format(startOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      period: '4 months',
-      manager: 'Jack'
-    },
-    {
-      userId: 123456789,
-      name: 'Tom2',
-      project: 'project03',
-      start: format(startOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm'),
-      period: '4 months',
-      manager: 'Jack'
-    },
-  ];
-
+  formatTime(){
+    //format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm')
+  }
 }
