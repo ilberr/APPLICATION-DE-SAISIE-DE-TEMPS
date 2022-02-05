@@ -1,0 +1,27 @@
+<p>add project!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Project</h1>
+                    <h6>Please enter title & Description</h6>
+                </div>
+                <form>
+                <form #projectForm="ngForm" (ngSubmit)="onAddProject(projectForm)">
+                        <div class="form-group">
+                          <label for="title">Title</label>
+                          <input ngModel name="title" type="text" class="form-control" id="title"  placeholder="Enter Title">
+                          <small id="title" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea ngModel name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          </div>
+                        <button [disabled]="projectForm.invalid"type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
