@@ -1,62 +1,54 @@
-<nav class="navbar">
-
-    <div class="toolbar">
-  
-      <ul>
-        <li><a class="navbar-brand" href="#"><span id='logo'>MyAgenda</span></a></li>
-      </ul>
-      <button id="logout" type="button" (click)="logout()" [routerLink]="['../home']" >LOGOUT</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" integrity="sha256-xHkYry2yRjy99N8axsS5UL/xLHghksrFOGKm9HvFZIs=" crossorigin="anonymous"></script>
+<div class="container">
+<div class="row">
+    <!-- Start col -->
+    <div *ngFor="let user of users" class="col-lg-6">
+        <div class="card m-b-30">
+            <div class="card-body py-5">
+                <div class="row">
+                    <div class="col-lg-3 text-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid mb-3" alt="user" />
+                    </div>
+                    <div class="col-lg-9">
+                        <h4>{{user.username}}</h4>
+                        <div class="button-list mt-4 mb-3">
+                            <button type="button" class="btn btn-primary-rgba"><i class="feather icon-message-square mr-2"></i>DELETE</button>
+                            <button type="button" class="btn btn-success-rgba"><i class="feather icon-phone mr-2"></i>EDIT</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="p-1">User ID :</th>
+                                        <td class="p-1">{{user.id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="p-1">Role :</th>
+                                        <td class="p-1">{{user.role.label}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="p-1">Status :</th>
+                                        <td class="p-1">{{user.enabled}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="p-1">Email ID :</th>
+                                        <td class="p-1">{{user.email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="users">
-      <a href="#">LIST USERS</a>
-    </div>
-  </nav>
-  <div>
-    <div class="container">
-      <span class="text-overview">Your Dashboard</span>
-       <table class="table table-bordered">
-            <tr>
-              <th>Employees</th>
-              <th>Project</th>
-              <th>Manager</th>
-              <th>Starts at</th>
-              <th>Ends at</th>
-              <th width="220px">Action</th>
-            </tr>
-            <tr *ngFor="let user of users" >
-              <td>
-                {{ user.name }}
-              </td>
-              <td>
-                  {{user.project}}
-              </td>
-              <td>
-                {{user.manager}}
-              </td>
-              <td>
-                {{user.start}}
-              </td>
-              <td>
-                {{user.end}}
-              </td>
-              <td>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <button type="button" class="btn btn-danger" (click)="delete(user)">Delete</button>
-                <a href="#" class="btn btn-secondary">Export PDF</a>
-
-              </td>
-
-            </tr>
-          
-        </table>
-      <div>
-        <!-- Add subcomponents responsible for displaying and manipulating workspace 
-        content and functionality for different identities.
-      <app-manager></app-manager> -->
-        
-      </div>
-      
-      <span class="copy-right">© 2020 - All rights reserved</span>
-    </div>
-  </div>
-  
+    <!-- End col -->
+    <!-- Start col -->
+    <!-- End col -->
+    <!-- Start col -->
+    <!-- End col -->
+    <!-- Start col -->
+    
+    <!-- End col -->
+</div>
+</div>
