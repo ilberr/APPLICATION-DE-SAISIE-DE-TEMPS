@@ -14,26 +14,6 @@ export interface User {
   manager_id: number;
 }
 
-export interface Employee{
-  userId: number,
-  name: string,
-  project: string,
-  start: Date,
-  end: Date,
-  period: string,
-  manager: Manager
-}
-
-export interface Manager{
-  userId: number,
-  name: string,
-  project: string,
-  start: Date,
-  end: Date,
-  period: string,
-  employees: Employee[]
-}
-
 export interface Role{
   id:number;
   label:string;
@@ -53,13 +33,17 @@ export interface Login{
 }
 
 export interface Project {
+  id: number;
   title: string;
   description: string;
   manager_id: number;
 }
 
 export interface Time{
-  date_start: string;
-  date_end: string;
+  id: number;
+  date_start: Date;
+  date_end: Date;
+  date_of_project: string;
+  project_id: number;
   user_id: number;
 }

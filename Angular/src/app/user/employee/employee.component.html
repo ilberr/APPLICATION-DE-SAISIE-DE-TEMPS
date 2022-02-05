@@ -14,29 +14,29 @@
     <tbody>
       <tr>
         <td>
-          {{employee.userId}}
+          {{user.id}}
         </td>
         <td>
-          {{employee.name}}
+          {{user.fullname}}
         </td>
         <td>
-          {{employee.project}}
+          {{project.title}}
         </td>
         <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="employee.start"/>
+          <input type="datetime-local" class="form-control form-date" [(ngModel)]="time.date_start"/>
         </td>
         <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="employee.end"/>
+          <input type="datetime-local" class="form-control form-date" [(ngModel)]="time.date_end"/>
         </td>
         <td>
-          {{employee.period}}
+          {{time.date_of_project}}
         </td>
         <td>
-          {{employee.manager}}
+          {{user.manager_id}}
           
         </td>
         <td>
-          <button class="btn btn-print" (click)="printPDF(employee)">
+          <button class="btn btn-print" (click)="printPDF(user)">
             Download PDF
           </button>
         </td>

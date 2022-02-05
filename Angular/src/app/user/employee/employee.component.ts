@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Employee, Manager, Project, User } from 'src/app/model/user.model';
+import { Project, User, Time } from 'src/app/model/user.model';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -10,9 +10,9 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  employee: Employee;
-  manager: Manager;
+  user: User;
   project: Project;
+  time: Time;
 
   @Input()
   isEmployee = true;
@@ -28,20 +28,25 @@ export class EmployeeComponent implements OnInit {
   getUser(): void{
     this.apiService.getUser().subscribe(
       (response: User) => {
-        this.employee.userId = response.id;
-        this.employee.name = response.fullname;
-        this.manager.userId = response.manager_id;
-        this.project.manager_id = response.manager_id;
-        this.employee.project = this.project.title;
+        this.user = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
-      
+    );
+  }
+  getProject(time: Time): void{
+    this.apiService.choosePorj(time).subscribe(
+      (response: Time) => {
+        this.time = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
     );
   }
 
-  printPDF(work:any){
+  printPDF(user:User){
     console.log("printPDF")
 
   }

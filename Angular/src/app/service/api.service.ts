@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Login } from '../model/user.model';
+import { Login, Time } from '../model/user.model';
 import { Observable } from "rxjs/index";
 import { Register, User } from '../model/user.model';
 
@@ -18,6 +18,10 @@ export class ApiService {
 
   public editProfileUser(user: User) : Observable<User> {
     return this.http.patch<User>(`${this.baseUrl}/user/edit-profile`,user);
+  }
+
+  public choosePorj(time: Time) : Observable<Time> { 
+    return this.http.post<Time>(`${this.baseUrl}/user/choose-proj`,time);
   }
 
 
