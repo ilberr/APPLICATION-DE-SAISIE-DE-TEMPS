@@ -3,6 +3,8 @@ import { ApiService } from '../service/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Register } from '../model/user.model';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 
 
@@ -23,7 +25,7 @@ export class SignupComponent implements OnInit {
   validSignup = false;
   error='';
   roleid: any;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     window.localStorage.removeItem('token');
@@ -37,6 +39,9 @@ export class SignupComponent implements OnInit {
         alert(error.message)
       }
       )
+  }
+  public goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
   }
 
 

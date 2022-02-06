@@ -1,6 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" integrity="sha256-xHkYry2yRjy99N8axsS5UL/xLHghksrFOGKm9HvFZIs=" crossorigin="anonymous"></script>
-<div class="container">
-<div class="row">
+<div class="container" id="main">
+  <button  class="btn btn-success btn-block" type="button" (click)="onOpenModal(user, 'add')" data-toggle="modal">New User</button>
+  <div class="row">
     <!-- Start col -->
     <div *ngFor="let user of users" class="col-lg-6">
         <div class="card m-b-30">
@@ -12,8 +13,8 @@
                     <div class="col-lg-9">
                         <h4>{{user.username}}</h4>
                         <div class="button-list mt-4 mb-3">
-                            <button type="button" class="btn btn-primary-rgba"><i class="feather icon-message-square mr-2"></i>DELETE</button>
-                            <button type="button" class="btn btn-success-rgba"><i class="feather icon-phone mr-2"></i>EDIT</button>
+                            <button type="button" class="btn btn-primary-rgba" ><i class="feather icon-message-square mr-2"></i>DELETE</button>
+                            <button type="button" class="btn btn-success-rgba" (click)="onOpenModal(user, 'edit')" data-toggle="modal"><i class="feather icon-phone mr-2"></i>EDIT</button>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-borderless mb-0">
@@ -52,3 +53,123 @@
     <!-- End col -->
 </div>
 </div>
+<!-- Edit Modal -->
+<div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="updateUserModalLabel"> Edit User </h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #editForm="ngForm">
+            <!--  <input type="hidden" ngModel="{{edituser?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+              <input type="hidden" ngModel="{{edituser?.createdAt}}" name="createdAt" class="form-control" id="createdAt" placeholder="Email">
+              <input type="hidden" ngModel="{{edituser.role.id}}" name="id" class="form-control" id="id" placeholder="Email">
+              <div class="form-group">
+                 <label for="name">Username</label>
+                 <input type="text" ngModel="{{edituser?.username}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+              </div> -->
+              
+              <div class="form-group">
+                 <label for="email">Email Address</label>
+                 <input type="email"  ngModel="{{edituser?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="name">Firstname</label>
+                <input type="text" ngModel="{{edituser?.firstname}}" name="firstname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Firstame">
+             </div>
+             <div class="form-group">
+              <label for="name">Lastname</label>
+              <input type="text" ngModel="{{edituser?.lastname}}" name="lastname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Lastname">
+             </div>
+             <div class="form-group">
+              <label for="Fullname">Fullname</label>
+              <input type="text" ngModel="{{edituser?.fullname}}" name="Fullname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Fullname">
+           </div>
+             <!--
+              <div class="form-group">
+                 <label for="Status">Status</label>
+                 <input type="text" ngModel="{{edituser?.enabled}}" name="Status" class="form-control" id="Status" placeholder="Status">
+              </div>
+              <div class="form-group">
+                 <label for="Role">Role</label>
+                 <input type="text"  ngModel="{{edituser.role.label}}" name="Role" class="form-control" id="Role" name="Role" placeholder="Role">
+              </div>
+              <div class="form-group">
+                <label for="Manager">Manager</label>
+                <input type="text"  ngModel="{{edituser.manager_id}}" name="Manager" class="form-control" id="Manager" name="Manager" placeholder="Manager">
+             </div> -->
+              <div class="modal-footer">
+                 <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                 <button (click)="editUser(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="addUser(addForm)">
+          <div class="form-group">
+             <label for="username">Username</label>
+             <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+             <label for="email">Email Address</label>
+             <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+         </div>
+         <div class="form-group">
+          <label for="lastname">Lastname</label>
+          <input type="text" ngModel name="lastname" class="form-control" id="lastname" placeholder="lastname" required>
+       </div>
+       <div class="form-group">
+        <label for="fullname">Fullname</label>
+        <input type="text" ngModel name="fullname" class="form-control" id="fullname" placeholder="fullname" required>
+        </div>
+          <div class="form-group">
+             <label for="Status">Status</label>
+             <input type="text" ngModel name="enabled" class="form-control" id="Status" placeholder="Status" required>
+          </div>
+          <div class="form-group">
+            <label for="Role">Role</label>
+            <input type="text"  ngModel name="role.label" class="form-control" id="Role" placeholder="Role">
+         </div>
+         <div class="form-group">
+          <label for="Role">Role</label>
+          <input type="number"  ngModel name="role.id" class="form-control" id="Role"  placeholder="Role">
+          </div>
+          <div class="form-group">
+             <label for="createdAt">createdAt</label>
+             <input type="text" ngModel name="createdAt" class="form-control" id="createdAt" placeholder="createdAt" required>
+          </div>
+          <div class="form-group">
+            <label for="Manager">Manager</label>
+            <input type="text"  ngModel name="manager_id" class="form-control" id="Manager" name="Manager" placeholder="Manager">
+         </div> 
+          <div class="modal-footer">
+             <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+          </div>
+          </form>
+       </div>
+    </div>
+  </div>
+  </div>
+
