@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { startOfDay, endOfDay, format} from 'date-fns';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
@@ -39,6 +38,22 @@ export class AdminComponent implements OnInit {
       }
       
     );
+  }
+  public searchUser(key: string): void {
+    console.log(key);
+    const results: User[] = [];
+    for (const user of this.users) {
+      if (user.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || user.firstname.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || user.lastname.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        results.push(user);
+      }
+    }
+    this.users = results;
+    if (results.length === 0 || !key) {
+      this.getUsers();
+    }
   }
   public editUser(user: User): void {
     this.Adminservice.updateUser(user).subscribe(

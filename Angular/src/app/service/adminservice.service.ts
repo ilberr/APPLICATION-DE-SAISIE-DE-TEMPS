@@ -22,7 +22,7 @@ export class AdminService {
   }
 
   public updateUser(user: User) : Observable<User> {
-    return this.http.patch<User>(`${this.adminUrl}/edit-profile/`,user);
+    return this.http.patch<User>(`${this.baseUrl}/admin/edit-profile`,user);
   }
 
   public deleteUser(username: string) : Observable<void> {
