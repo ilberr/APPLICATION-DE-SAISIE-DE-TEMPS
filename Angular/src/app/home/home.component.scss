@@ -15,7 +15,8 @@ nav {
  
 /*Change the background color when the mouse moves in*/
 nav a:hover {
-    background-color: #794CFF;
+    background-color: #af98f3;
+    padding: 8px;
 }
   
 nav ul{
@@ -454,89 +455,3 @@ nav li{
     line-height: 14px;
     font-stretch: normal;
   }
-//   .nav {
-//     top: 11px;
-//     left: 0px;
-//     width: 100%;
-//     height: 122px;
-//     display: flex;
-//     position: absolute;
-//     max-width: 1440px;
-//     box-sizing: border-box;
-//     align-items: flex-start;
-//     border-color: transparent;
-//     background-color: rgba(235, 235, 235, 1);
-//   }
-//   .nav-group {
-//     top: 47px;
-//     left: 166px;
-//     width: 100%;
-//     height: 48px;
-//     display: flex;
-//     position: absolute;
-//     max-width: 1110px;
-//     box-sizing: border-box;
-//     align-items: flex-start;
-//     flex-shrink: 1;
-//     border-color: transparent;
-//   }
-//   .my-agenda {
-//     top: 12px;
-//     left: 0px;
-//     color: rgba(29, 40, 48, 1);
-//     width: auto;
-//     height: auto;
-//     position: absolute;
-//     font-size: 24px;
-//     align-self: auto;
-//     font-style: normal;
-//     text-align: left;
-//     font-family: Josefin Sans;
-//     font-weight: 400;
-//     line-height: 24px;
-//     font-stretch: normal;
-//   }
-//   .login {
-//     top: 16px;
-//     left: 879px;
-//     color: rgba(53, 65, 75, 1);
-//     width: auto;
-//     height: auto;
-//     position: absolute;
-//     font-size: 18px;
-//     align-self: auto;
-//     font-style: normal;
-//     text-align: left;
-//     font-family: Inria Sans;
-//     font-weight: 700;
-//     line-height: 16px;
-//     font-stretch: normal;
-//   }
-//   .get-started {
-//     top: 0px;
-//     left: 941px;
-//     width: 169px;
-//     height: 48px;
-//     display: flex;
-//     position: absolute;
-//     border-color: transparent;
-//     border-radius: 4px;
-//     background-color: #ECE5FF;
-//   }
-//   .text-get-started {
-//     top: 16px;
-//     left: 981px;
-//     color: rgba(121, 76, 255, 1);
-//     width: auto;
-//     height: auto;
-//     position: absolute;
-//     font-size: 16px;
-//     align-self: auto;
-//     font-style: normal;
-//     text-align: center;
-//     font-family: Inter;
-//     font-weight: 500;
-//     line-height: 16px;
-//     font-stretch: normal;
-//   }
-  

@@ -12,6 +12,7 @@ import { ApiService } from "../service/api.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   public loginForm!: FormGroup;
   constructor(
     private formBuilder : FormBuilder,
@@ -33,8 +34,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('lastname', res.lastname);
         localStorage.setItem('role', res.role.label);
         localStorage.setItem('token', res.tokenSignature);
-        console.log(localStorage)
-        this.router.navigate([this.getRole(res).toLowerCase()])
+        console.log(localStorage);
+        this.router.navigate([this.getRole(res).toLowerCase()]);
 
       },
       (err:HttpErrorResponse)=>{

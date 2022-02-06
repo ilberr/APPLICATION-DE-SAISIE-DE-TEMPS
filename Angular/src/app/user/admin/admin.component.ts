@@ -130,23 +130,5 @@ export class AdminComponent implements OnInit {
       }
     )
   }
-
-  
-/*
-  logout() {
-    this.apiService.logout()
-
-  }
-  addEvent(){
-    
-  }
-  delete(user:any){
-    
-    console.log("delete")
-
-  }
-  printPDF(user:any){
-    console.log("printPDF")
-  }*/
 }
   

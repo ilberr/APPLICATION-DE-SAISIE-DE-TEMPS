@@ -11,7 +11,8 @@ const baseUrl = 'http://localhost:8090';
 })
 export class ApiService {
 
-  private apiServerUrl = baseUrl +"/user/"+localStorage.getItem("token");
+  public apiUser = baseUrl +"/user/"+localStorage.getItem("token");
+  public apiManager = baseUrl +"/manager/"+localStorage.getItem("token");
 
   constructor(private http: HttpClient) { }
 
@@ -23,18 +24,22 @@ export class ApiService {
   }
   //  Pour Employee
   choixProjet(timeRequest: TimeRequest):Observable<any>{
-    return this.http.post<any>(`${this.apiServerUrl}/choose-proj`,timeRequest)
+    return this.http.post<any>(`${this.apiUser}/choose-proj`,timeRequest)
   }
 
   getAllTimes():Observable<Time[]>{
-    return this.http.get<Time[]>(`${this.apiServerUrl}/times/all`)
+    return this.http.get<Time[]>(`${this.apiUser}/times/all`)
+  }
+
+  getAllUsersProjects():Observable<any>{
+    return this.http.get<Project[]>(`${this.apiUser}/projects`)
   }
 
 
   //  Register
 
   public home():Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/`)
+    return this.http.get<any>(`${baseUrl}/`)
   }
   
   public signUp(register: Register):Observable<Register> {
@@ -48,39 +53,37 @@ export class ApiService {
   }
 
   public logout(token:string):Observable<any>{
-    return this.http.patch<any>(`${this.apiServerUrl}/auth/logout/${token}`,{})
+    return this.http.patch<any>(`${baseUrl}/auth/logout/${token}`,{})
   }
 
 // LoggedInUserAndRoleService
   public getLoggedInUser():Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/users/loggedInUserId`);
+    return this.http.get<any>(`${baseUrl}/users/loggedInUserId`);
   }
 
   public getRoleUser(user:User):Observable<Role>{
-    return this.http.get<Role>(`${this.apiServerUrl}/users/getRole/${user.id}`)
+    return this.http.get<Role>(`${baseUrl}/users/getRole/${user.id}`)
   }
 
   // Manager
   public getAll():Observable<User[]>{
-    return this.http.get<User[]>(`${this.apiServerUrl}/users-of-manager`);
+    return this.http.get<User[]>(`${this.apiManager}/users-of-manager`);
   }
 
   public getAllProjects():Observable<Project[]>{
-    return this.http.get<Project[]>(`${this.apiServerUrl}/projects`);
+    return this.http.get<Project[]>(`${this.apiManager}/projects`);
   }
 
   public addUserAdmin(register:Register):Observable<User>{
-    return this.http.post<User>(`${this.apiServerUrl}/add-user`,register)
+    return this.http.post<User>(`${this.apiManager}/add-user`,register)
   }
 
   public createProject(project:Project){
-    return this.http.post<Project>(`${this.apiServerUrl}/create-projet`,project)
+    return this.http.post<Project>(`${this.apiManager}/create-projet`,project)
   }
 
   public getProjects():Observable<Project[]>{
-    return this.http.get<Project[]>(`${this.apiServerUrl}/projects`)
+    return this.http.get<Project[]>(`${this.apiManager}/projects`)
   }
-
-
 
 }

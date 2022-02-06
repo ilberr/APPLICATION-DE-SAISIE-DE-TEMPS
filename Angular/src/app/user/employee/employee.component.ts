@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project, User, Time } from 'src/app/model/user.model';
 import { ApiService } from 'src/app/service/api.service';
@@ -16,29 +17,24 @@ export class EmployeeComponent implements OnInit {
   project: Project;
   token:string='';
 
-  @Input()
-  isEmployee = true;
+  link = this.employeeService.apiUser+"/date/export/";
+  date: string = '';
+  dateT = new Date();
+  reportLink='';
 
-  @Output()
-  employeeChange = new EventEmitter<boolean>();
-
-  constructor(public registerService: ApiService, private router:Router) {}
+  constructor(public employeeService: ApiService, 
+    private router:Router, 
+    public datePipe:DatePipe ) {}
 
   ngOnInit(): void {
-  }
-
-
-  printPDF(user:User){
-    console.log("printPDF")
-
-  }
-  formatTime(){
-    //format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm')
+    this.date = this.datePipe.transform(this.dateT,"yyyy-MM")!;
+    this.reportLink = this.onGetCompteRendu();
+    console.log(this.reportLink)
   }
 
   onLogout(){
     this.token = localStorage.getItem("token") || '';
-    this.registerService.logout(this.token).subscribe(
+    this.employeeService.logout(this.token).subscribe(
       (res:string)=>{
         alert("Logout Successful")
         console.log(res)
@@ -52,4 +48,9 @@ export class EmployeeComponent implements OnInit {
       }
     )
   }
+  
+  onGetCompteRendu(): string{
+    return this.link  + '' + this.date;
+  }
+  
 }

@@ -1,10 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgModule, OnInit } from '@angular/core';
-import { th } from 'date-fns/locale';
-import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/service/api.service';
-import { Time, TimeRequest } from '../model/user.model';
-import { CalendarEvent, CalendarEventAction, CalendarView } from 'angular-calendar';
+import { Time } from '../model/user.model';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { endOfDay, startOfDay } from 'date-fns';
 
 @Component({
@@ -42,29 +40,9 @@ export class TimeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getAllTimes()
     console.log(new Date("2022-01-05T21:29:18"))
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    console.log(date);
-    //this.openAppointmentList(date)
-  }
-  getAllTimes(){
     this.employeeService.getAllTimes().subscribe(
       (res:Time[])=>{
-        /*
-            {
-              start: startOfDay(new Date("2022-01-05T21:29:18")),
-              end: endOfDay(new Date(2022,1,20)),
-              title: '##',
-              color: this.colors[0]
-            }
-        */
        let events:CalendarEvent[]=[]
        for(let i=0;i< res.length;i++){
          let evenTime:CalendarEvent = {
@@ -81,6 +59,15 @@ export class TimeComponent implements OnInit {
         alert(err.message)
       }
     )
+
+  }
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log(date);
   }
 
 }

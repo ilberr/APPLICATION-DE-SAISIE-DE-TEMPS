@@ -18,7 +18,7 @@ export class ChoixProjetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProjects()
+    this.getProjects();
   }
   selected = "----"
   
@@ -43,7 +43,7 @@ export class ChoixProjetComponent implements OnInit {
   }
 
   getProjects():void{
-    this.employeeService.getAllProjects().subscribe(
+    this.employeeService.getAllUsersProjects().subscribe(
       (res:Project[])=>{
         this.projects=res
         console.log(this.projects)

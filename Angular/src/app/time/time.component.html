@@ -30,10 +30,15 @@
     </div>
 
 </div>
+<br>
+<br>
 
 <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <h3 style="float:left; font-size: xx-large; font-weight: bolder; margin-bottom: 10px;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
   </div>
+  <br>
+  <br>
+  <br>
 <div [ngSwitch]="view">
     <!--"2022-01-05T21:29:18"-->
     <mwl-calendar-month-view (dayClicked)="dayClicked($event.day)"  *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events">

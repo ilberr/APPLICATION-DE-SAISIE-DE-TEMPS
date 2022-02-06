@@ -6,7 +6,8 @@
         <th scope="col">Last Name</th>
         <th scope="col">Username</th>
         <th scope="col">Role</th>
-        <th scope="col">active</th>
+        <th scope="col">Active</th>
+        <th scope="col">Report mensal</th>
     </tr>
     </thead>
     <tbody>
@@ -17,6 +18,9 @@
         <td>{{user.username}}</td>
         <td>{{user.role.label}}</td>
         <td>{{user.enabled}}</td>
+        <td>
+          <a [href]="onGetCompteRendu(user.id)">Show PDF</a>
+        </td>
       </tr>
     </tbody>
   </table>

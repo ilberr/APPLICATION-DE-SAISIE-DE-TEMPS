@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }   from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { HttpClientModule} from "@angular/common/http";
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { ApiService } from './service/api.service';
 import { SignupComponent } from './signup/signup.component';
@@ -23,13 +22,14 @@ import { AddProjetComponent } from './add-projet/add-projet.component';
 import { AddUserManagerComponent } from './add-user-manager/add-user-manager.component';
 import { UsersOfManagerComponent } from './users-of-manager/users-of-manager.component';
 import { ProjectsOfManageComponent } from './projects-of-manage/projects-of-manage.component';
+import { AdminService } from './service/admin.service';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent,
     LoginComponent,
     SignupComponent,
     AdminComponent,
@@ -55,7 +55,9 @@ import { ProjectsOfManageComponent } from './projects-of-manage/projects-of-mana
     })
     
   ],
-  providers: [ApiService],
+  providers: [ApiService,
+            AdminService,
+            DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

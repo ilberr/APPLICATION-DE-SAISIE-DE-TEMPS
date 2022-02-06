@@ -18,16 +18,12 @@
                             <input ngModel name="date_end" type="datetime-local" class="form-control" id="dateEnd"  placeholder="Enter Title">
                             <small id="date_end" class="form-text text-muted"></small>
                           </div>
-                    <!--
-                        <div class="form-group">
-                            <label for="projectId">Project Id</label>
-                            <input ngModel name="projectId" class="form-control" id="projectId"/>
-                        </div>-->
+                          <br/>
                         <div class="form-group">
                             <select #cricket (change)="update($event)">
                                 <option value="default">----</option>
-                                <option *ngFor="let player of projects" [value]="player.id">
-                                    {{player.title}}
+                                <option *ngFor="let project of projects" [value]="project.id">
+                                    {{project.title}}
                                 </option>
                             </select>
                         </div>

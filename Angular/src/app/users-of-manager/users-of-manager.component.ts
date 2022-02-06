@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user.model';
@@ -11,17 +12,22 @@ import { ApiService } from '../service/api.service';
 export class UsersOfManagerComponent implements OnInit {
 
   public users:User[]=[];
+
+  link = this.managerService.apiManager+"/date/export/";
+  date: string = '';
+  dateT = new Date();
+  reportLink='';
+
   constructor(
     private http:HttpClient,
-    private managerService:ApiService
+    private managerService:ApiService,
+    public datePipe:DatePipe
   ) { }
 
   ngOnInit(): void {
-    this.getAll()
-  }
+    this.date = this.datePipe.transform(this.dateT,"yyyy-MM")!;
 
-  getAll(){
-    return this.managerService.getAll().subscribe(
+    this.managerService.getAll().subscribe(
       (res:User[])=>{
         this.users = res;
       },
@@ -29,6 +35,10 @@ export class UsersOfManagerComponent implements OnInit {
         alert(err.message)
       }
     )
+  }
+
+  onGetCompteRendu(id: number): string{
+    return this.link +''+ id + '/' + this.date;
   }
 
 }

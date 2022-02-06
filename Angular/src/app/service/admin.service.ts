@@ -9,7 +9,7 @@ import { Register,Project, User } from '../model/user.model';
 })
 export class AdminService {
   private baseUrl = 'http://localhost:8090';
-  private adminUrl = 'http://localhost:8090/admin/'+localStorage.getItem("token");
+  public adminUrl = 'http://localhost:8090/admin/'+localStorage.getItem("token");
 
   constructor(private http: HttpClient) { }
 
@@ -39,6 +39,10 @@ export class AdminService {
 
   public changeAff(managerId: number) : Observable<Project> {
     return this.http.patch<Project>(`${this.baseUrl}/admin/change-affec/${managerId}`, managerId);
+  }
+
+  public getCR(userId:number,date:string){
+    return this.http.get<User[]>(`${this.adminUrl}/date/export/${userId}/${date}`)
   }
 
 

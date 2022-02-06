@@ -1,7 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { startOfDay, endOfDay, format} from 'date-fns';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -12,23 +12,24 @@ import { ApiService } from 'src/app/service/api.service';
 export class ManagerComponent implements OnInit {
   token:string='';
 
-  constructor(private router:Router, private registerService: ApiService) { }
+  link = this.managerService.apiUser+"/date/export/";
+  date: string = '';
+  dateT = new Date();
+  reportLink='';
+
+  constructor(private router:Router, 
+    private managerService: ApiService, 
+    public datePipe:DatePipe) { }
 
   ngOnInit(): void {
-    console.log(localStorage);
+    this.date = this.datePipe.transform(this.dateT,"yyyy-MM")!;
+    this.reportLink = this.onGetCompteRendu();
+    console.log(this.reportLink)
   }
 
-  deleteEvent(work:any){
-    //this.workspaces
-    console.log("delete")
-
-  }
-  addEvent(){
-    
-  }
   onLogout(){
     this.token = localStorage.getItem("token") || '';
-    this.registerService.logout(this.token).subscribe(
+    this.managerService.logout(this.token).subscribe(
       (res:string)=>{
         alert("Logout Successful")
         console.log(res)
@@ -43,8 +44,8 @@ export class ManagerComponent implements OnInit {
     )
   }
 
-  printPDF(work:any){
-    console.log("printPDF")
+  onGetCompteRendu(): string{
+    return this.link  + '' + this.date;
   }
 
 }

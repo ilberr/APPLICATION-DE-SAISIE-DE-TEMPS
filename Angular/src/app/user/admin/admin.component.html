@@ -66,14 +66,6 @@
             </div>
         </div>
     </div>
-    <!-- End col -->
-    <!-- Start col -->
-    <!-- End col -->
-    <!-- Start col -->
-    <!-- End col -->
-    <!-- Start col -->
-    
-    <!-- End col -->
 </div>
 </div>
 <button (click)="onLogout()">Logout</button>
@@ -90,9 +82,7 @@
         <div class="modal-body">
            <form #editForm="ngForm">
               <input type="hidden" ngModel="{{edituser?.id}}" name="id" class="form-control" id="id" placeholder="Email">
-              <!--<input type="hidden" ngModel="{{edituser?.createdAt}}" name="createdAt" class="form-control" id="createdAt" placeholder="Email">
-              <input type="hidden" ngModel="{{edituser.role.id}}" name="id" class="form-control" id="id" placeholder="Email">
-            --> <div class="form-group">
+               <div class="form-group">
                  <label for="name">Username</label>
                  <input type="text" ngModel="{{edituser?.username}}" name="username" class="form-control" id="username2" aria-describedby="emailHelp" placeholder="Username">
               </div> 
@@ -113,19 +103,6 @@
               <label for="Fullname">Fullname</label>
               <input type="text" ngModel="{{edituser?.fullname}}" name="Fullname" class="form-control" id="fullname1" aria-describedby="emailHelp" placeholder="Fullname">
               </div>
-             <!--
-              <div class="form-group">
-                 <label for="Status">Status</label>
-                 <input type="text" ngModel="{{edituser?.enabled}}" name="Status" class="form-control" id="Status" placeholder="Status">
-              </div>
-              <div class="form-group">
-                 <label for="Role">Role</label>
-                 <input type="text"  ngModel="{{edituser.role.label}}" name="Role" class="form-control" id="Role" name="Role" placeholder="Role">
-              </div>
-              <div class="form-group">
-                <label for="Manager">Manager</label>
-                <input type="text"  ngModel="{{edituser.manager}}" name="Manager" class="form-control" id="Manager" name="Manager" placeholder="Manager">
-             </div> -->
               <div class="modal-footer">
                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
                  <button (click)="editUser(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
@@ -171,10 +148,6 @@
           <label for="password">Password</label>
           <input type="password" ngModel name="password" class="form-control" id="password" placeholder="password" required>
           </div>
-          <!--<div class="form-group">
-             <label for="Status">Status</label>
-             <input type="text" ngModel name="enabled" class="form-control" id="Status" placeholder="Status" required>
-          </div>-->
          <div class="form-group">
           <label class="control-label" for="roleId">Role</label>
             <select class="controls" ngModel name="roleId"   required >
@@ -183,14 +156,6 @@
                 <option value="1">EMPLOYEE</option>
             </select>
           </div>
-          <!--<div class="form-group">
-             <label for="createdAt">createdAt</label>
-             <input type="text" ngModel name="createdAt" class="form-control" id="createdAt" placeholder="createdAt" required>
-          </div>
-          <div class="form-group">
-            <label for="Manager">Manager</label>
-            <input type="text"  ngModel name="manager_id" class="form-control" id="Manager" name="Manager" placeholder="Manager">
-         </div> -->
           <div class="modal-footer">
              <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>

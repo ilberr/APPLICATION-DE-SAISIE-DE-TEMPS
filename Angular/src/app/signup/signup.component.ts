@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Register } from '../model/user.model';
@@ -44,20 +44,6 @@ export class SignupComponent implements OnInit {
   }
 
 }
-
-  /*onSubmit() {
-    const { Firstname, Lastname, username, password, email, role } = this.form;
-
-    this.authenticationService.register(this.form).subscribe({
-      next: data => {
-        this.validSignup=true;
-      },
-      error: err => {
-        this.error = err.error.message;
-    }
-    });
-    
-  }*/
 
 
 

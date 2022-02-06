@@ -21,6 +21,7 @@ export class AddUserManagerComponent implements OnInit {
   }
 
   onRegister(usertForm:NgForm):void{
+    usertForm.value.roleId = 1;
     this.managerService.addUserAdmin(usertForm.value).subscribe(
       (res:User)=>{
         console.log(res)
