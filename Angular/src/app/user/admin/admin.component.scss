@@ -3,7 +3,7 @@
 
   body{
     background:#f2f3f7;
-    margin-top:20px;
+    margin-top:10px;
     }
 .m-b-30 {
     margin-bottom: 30px;
@@ -20,12 +20,12 @@ color: #8A98AC;
     border-top: 1px solid rgba(0, 0, 0, 0.03);
     padding: 0.6rem;
 }
-.btn-primary-rgba {
+.btn-danger {
     background-color: rgba(80, 111, 228, 0.1);
     border: none;
-    color: #506fe4;
+    color: #b92222;
 }
-.btn-success-rgba {
+.btn-warning {
     background-color: rgba(67, 209, 135, 0.1);
     border: none;
     color: #43d187;
@@ -37,13 +37,15 @@ color: #8A98AC;
 }
 .btn-success {
     background-color: #4CAF50; /* Green */
-    border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 22px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
+    width: 50;
+    position: relative;
+    top: -45px; 
+    left: 70px;
     
   }
   :host { 
@@ -80,7 +82,7 @@ color: #8A98AC;
     top: 0px;
     left: 0px;
     width: 107px;
-    height: 1237px;
+    height: 3237px;
     display: flex;
     position: absolute;
     box-sizing: border-box;
@@ -89,11 +91,11 @@ color: #8A98AC;
     background-color: #dbd2fa;
   }
   .protrait {
-    top: 42px;
+    top: 152px;
     left: 25px;
     width: 75;
     height: 75;
-    position: absolute;
+    position: fixed;
   }
   .line {
     top: 142px;
@@ -104,45 +106,38 @@ color: #8A98AC;
     background-color: #D9D9D9;
   }
   
-  .icon-home {
-    top: 182px;
-    left: 35px;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    object-fit: cover;
+  .logout {
+    top: 250px;
+    left: 18px;
+    width: 56px;
+    height: 16px;
+    position: fixed;
     border-color: transparent;
+    background-color:#D9D9D9 ;
+    text-align: center;
   }
-  .icon-assignment {
-    top: 264px;
-    left: 39px;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    object-fit: cover;
-    border-color: transparent;
-  }
-  .icon-helper {
-    top: 1143px;
-    left: 35px;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    object-fit: cover;
-    border-color: transparent;
-  }
-  .icon-setting {
-    top: 336px;
-    left: 35px;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    object-fit: cover;
-    border-color: transparent;
-  }
+  #logo{
+    position: fixed;
+    width: 110px;
+    height: 24px;
+    left: 5px;
+    top: 60px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+
+    letter-spacing: -0.06em;
+
+    color: #1D2830;
+}
+  
   .text-overview {
     top: 91px;
-    left: 190px;
+    left: 600px;
     color: rgba(0, 0, 0, 1);
     width: 301px;
     height: 73px;
@@ -160,5 +155,17 @@ color: #8A98AC;
     margin: 15% 0 0 10%;
     width: 90%;
     height: auto;
+
+  }
+  .mr-sm-2{
+    margin: 0% 0 0 10%;
+    width: 30%;
+    height: auto;
+    margin-bottom:100;
+    background-color:#c9c9c0;
+    position: relative;
+    top: 0px; 
+    left: 580px;
+    
 
   }
