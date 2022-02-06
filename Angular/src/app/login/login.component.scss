@@ -1,6 +1,6 @@
 
 
-.login-container {
+.container {
 
 font-family: 'Open Sans Light';
 
@@ -19,7 +19,7 @@ top: 50%;
 padding: 30px;
 }
 
-.login-container .form-group .form-control{
+.container .form-group .form-control{
 
     display: block;
     box-sizing: border-box;
@@ -32,12 +32,12 @@ padding: 30px;
     outline: none;
 }
 
-.login-container .form-group .form-control::placeholder{
+.container .form-group .form-control::placeholder{
 
     text-transform: uppercase;
 }
 
-.login-container .btn {
+.container .btn {
     text-align: center;
     box-sizing: border-box;
     padding: 10px;
@@ -49,11 +49,11 @@ padding: 30px;
 }
 
 
-.login-container .msg{
+.container .msg{
     text-align: center;
     line-height: 80px;
 }
-.login-container .msg a{
+.container .msg a{
     text-decoration: none;
     color: #794CFF;
 }

@@ -4,7 +4,7 @@ import { Login } from '../model/user.model';
 import {Observable} from "rxjs/index";
 import { Register } from '../model/user.model';
 
-const baseUrl = 'http://localhost:8090/';
+const baseUrl = 'http://localhost:8090';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,16 +13,12 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   public login(login: Login):Observable<any> {
-    return this.http.post<any>(`${baseUrl}/login`,
-    {params: {
-      username: login.username,
-      password: login.password
-    }})
+    return this.http.post<any>(`${baseUrl}/auth/signin`,login)
 
   }
 
   public signUp(register: Register):Observable<Register> {
-    return this.http.post<Register>(`${baseUrl}auth/`,register)
+    return this.http.post<Register>(`${baseUrl}/auth/`,register)
 
   }
 
@@ -32,8 +28,8 @@ export class ApiService {
   public getToken(): string {
     return sessionStorage.getItem('TOKEN') || '';
   }
-  logout():void {
-    window.sessionStorage.clear();
+  public logout(token:string):Observable<any>{
+    return this.http.patch<any>(`${baseUrl}/auth/logout/${token}`,{})
   }
 
 

@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   // l'identité de l'utilisateur accédant au backend.
   isEmployee = false; 
   isManager = false;
-  isAdmin = true;
+  isAdmin = false;
 
   constructor() { }
 

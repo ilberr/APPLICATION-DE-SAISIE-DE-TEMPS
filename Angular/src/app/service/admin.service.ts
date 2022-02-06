@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, User } from '../model/user.model';
+import { Register,Project, User } from '../model/user.model';
 
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Project, User } from '../model/user.model';
 })
 export class AdminService {
   private baseUrl = 'http://localhost:8090';
+  private adminUrl = 'http://localhost:8090/admin/'+localStorage.getItem("token");
 
   constructor(private http: HttpClient) { }
 
@@ -17,15 +18,15 @@ export class AdminService {
   }
 
   public addUser(user: User) : Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/admin/add-user`,user);
+    return this.http.post<User>(`${this.adminUrl}/add-user`,user);
   }
 
   public updateUser(user: User) : Observable<User> {
     return this.http.patch<User>(`${this.baseUrl}/admin/edit-profile`,user);
   }
 
-  public deleteUser(userId: number) : Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/admin/delete-user/${userId}`);
+  public deleteUser(username: string) : Observable<void> {
+    return this.http.delete<void>(`${this.adminUrl}/delete/${username}`);
   }
 
   public usersManager(managerId: number) : Observable<User[]> {

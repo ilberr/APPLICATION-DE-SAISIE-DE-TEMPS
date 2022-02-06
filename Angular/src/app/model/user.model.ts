@@ -6,13 +6,12 @@ export interface User {
   lastname: string;
   fullname: string;
   enabled: boolean;
-  role: {
-    id:number;
-    label:string;
-  };
+  role: Role;
   createdAt: string;
-  manager_id: number;
+  manager : User;
+  tokenSignature:string
 }
+
 
 export interface Role{
   id:number;
@@ -24,6 +23,7 @@ export interface Register{
   firstname: string;
   lastname: string;
   email: string;
+  managerId: number;
   roleId: number;
 }
 

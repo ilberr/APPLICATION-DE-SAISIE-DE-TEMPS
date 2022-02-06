@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../service/api.service";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { User } from '../model/user.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,31 +13,39 @@ import {ApiService} from "../service/api.service";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  invalidLogin: boolean = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
-
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const loginPayload = {
-      username: this.loginForm.controls.username.value,
-      password: this.loginForm.controls.password.value
-    }
-    this.apiService.login(loginPayload).subscribe((data:any) => {
-      alert(data.message);
-    });
-  }
-
+  public loginForm!: FormGroup;
+  constructor(
+    private formBuilder : FormBuilder,
+    private http : HttpClient,
+    private registerService:ApiService,
+    private router : Router
+  ) { }
   ngOnInit(): void {
-
-    window.localStorage.removeItem('token');
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
-    });
   }
 
+  public onLogin(loginForm: NgForm){
+    this.registerService.login(loginForm.value).subscribe(
+      (res:User)=>{
+        console.log(res)
+        alert("Login Successful")
+        loginForm.reset();
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('firstname', res.firstname);
+        localStorage.setItem('lastname', res.lastname);
+        localStorage.setItem('role', res.role.label);
+        localStorage.setItem('token', res.tokenSignature);
+        console.log(localStorage)
+        this.router.navigate([this.getRole(res).toLowerCase()])
+             
+      },
+      (err:HttpErrorResponse)=>{
+        alert(err.message)
+      }
+    )
+  }
+
+  public getRole(user:User):String{
+    return user.role.label;
+  }
 
 }
