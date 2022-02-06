@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Project, User, Time } from 'src/app/model/user.model';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -11,8 +12,9 @@ import { ApiService } from 'src/app/service/api.service';
 export class EmployeeComponent implements OnInit {
 
   user: User;
-  project: Project;
   time: Time;
+  project: Project;
+  token:string='';
 
   @Input()
   isEmployee = true;
@@ -20,31 +22,11 @@ export class EmployeeComponent implements OnInit {
   @Output()
   employeeChange = new EventEmitter<boolean>();
 
-  constructor(public apiService: ApiService) {}
+  constructor(public registerService: ApiService, private router:Router) {}
 
   ngOnInit(): void {
   }
 
-  getUser(): void{
-    this.apiService.getUser().subscribe(
-      (response: User) => {
-        this.user = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-  getProject(time: Time): void{
-    this.apiService.choosePorj(time).subscribe(
-      (response: Time) => {
-        this.time = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
 
   printPDF(user:User){
     console.log("printPDF")
@@ -52,5 +34,22 @@ export class EmployeeComponent implements OnInit {
   }
   formatTime(){
     //format(endOfDay(new Date()), 'yyyy-MM-ddTHH:mm')
+  }
+
+  onLogout(){
+    this.token = localStorage.getItem("token") || '';
+    this.registerService.logout(this.token).subscribe(
+      (res:string)=>{
+        alert("Logout Successful")
+        console.log(res)
+        localStorage.clear()
+        this.router.navigate(['login'])
+      },
+      (err:HttpErrorResponse)=>{
+        localStorage.clear()
+        this.router.navigate(['login'])        
+        
+      }
+    )
   }
 }

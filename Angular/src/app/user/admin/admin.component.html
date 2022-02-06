@@ -1,3 +1,16 @@
+<div>
+  <div class="container">
+    <div class="side-bar">
+      <img src="../../assets/default.jpg" alt="user's protrait" class="protrait" width="50" height="50"/>
+      <div class="line"></div>
+      <!-- <img src="data:image" alt="home" class="icon-home"/> -->
+    </div>
+    <span class="text-overview"> Admin </span>
+    
+    <div class="table-responsive">
+      <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="100%" color=#987cb9 SIZE=10>
+      <br/>
+      <br/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" integrity="sha256-xHkYry2yRjy99N8axsS5UL/xLHghksrFOGKm9HvFZIs=" crossorigin="anonymous"></script>
 <div class="container" id="main">
   <button  class="btn btn-success btn-block" type="button" (click)="onOpenModal(user, 'add')" data-toggle="modal">New User</button>
@@ -13,7 +26,7 @@
                     <div class="col-lg-9">
                         <h4>{{user.username}}</h4>
                         <div class="button-list mt-4 mb-3">
-                            <button type="button" class="btn btn-primary-rgba" ><i class="feather icon-message-square mr-2"></i>DELETE</button>
+                            <button type="button" class="btn btn-primary-rgba" (click)="onOpenModal(user, 'delete')"data-toggle="modal"><i class="feather icon-message-square mr-2"></i>DELETE</button>
                             <button type="button" class="btn btn-success-rgba" (click)="onOpenModal(user, 'edit')" data-toggle="modal"><i class="feather icon-phone mr-2"></i>EDIT</button>
                         </div>
                         <div class="table-responsive">
@@ -53,12 +66,13 @@
     <!-- End col -->
 </div>
 </div>
+<button (click)="onLogout()">Logout</button>
 <!-- Edit Modal -->
 <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
      <div class="modal-content">
         <div class="modal-header">
-           <h5 class="modal-title" id="updateUserModalLabel"> Edit User </h5>
+           <h5 class="modal-title" id="updateUserModalLabel"> Edit User {{edituser?.username}} </h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
            </button>
@@ -75,19 +89,19 @@
               
               <div class="form-group">
                  <label for="email">Email Address</label>
-                 <input type="email"  ngModel="{{edituser?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+                 <input type="email"  ngModel="{{edituser?.email}}" name="email" class="form-control" id="email1" placeholder="Email">
               </div>
               <div class="form-group">
                 <label for="name">Firstname</label>
-                <input type="text" ngModel="{{edituser?.firstname}}" name="firstname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Firstame">
+                <input type="text" ngModel="{{edituser?.firstname}}" name="firstname" class="form-control" id="firstname1" aria-describedby="emailHelp" placeholder="Firstame">
              </div>
              <div class="form-group">
               <label for="name">Lastname</label>
-              <input type="text" ngModel="{{edituser?.lastname}}" name="lastname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Lastname">
+              <input type="text" ngModel="{{edituser?.lastname}}" name="lastname" class="form-control" id="lastname1" aria-describedby="emailHelp" placeholder="Lastname">
              </div>
              <div class="form-group">
               <label for="Fullname">Fullname</label>
-              <input type="text" ngModel="{{edituser?.fullname}}" name="Fullname" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Fullname">
+              <input type="text" ngModel="{{edituser?.fullname}}" name="Fullname" class="form-control" id="fullname1" aria-describedby="emailHelp" placeholder="Fullname">
            </div>
              <!--
               <div class="form-group">
@@ -133,36 +147,40 @@
           </div>
           <div class="form-group">
             <label for="firstname">Firstname</label>
-            <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+            <input type="text" ngModel name="firstname" class="form-control" id="firstname" placeholder="Username" required>
          </div>
          <div class="form-group">
           <label for="lastname">Lastname</label>
           <input type="text" ngModel name="lastname" class="form-control" id="lastname" placeholder="lastname" required>
-       </div>
-       <div class="form-group">
+         </div>
+        <div class="form-group">
         <label for="fullname">Fullname</label>
         <input type="text" ngModel name="fullname" class="form-control" id="fullname" placeholder="fullname" required>
         </div>
-          <div class="form-group">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" ngModel name="password" class="form-control" id="password" placeholder="password" required>
+          </div>
+          <!--<div class="form-group">
              <label for="Status">Status</label>
              <input type="text" ngModel name="enabled" class="form-control" id="Status" placeholder="Status" required>
-          </div>
-          <div class="form-group">
-            <label for="Role">Role</label>
-            <input type="text"  ngModel name="role.label" class="form-control" id="Role" placeholder="Role">
-         </div>
+          </div>-->
          <div class="form-group">
-          <label for="Role">Role</label>
-          <input type="number"  ngModel name="role.id" class="form-control" id="Role"  placeholder="Role">
+          <label class="control-label" for="roleId">Role</label>
+            <select class="controls" ngModel name="roleId"   required >
+                <option value="3">ADMINISTRATOR</option>
+                <option value="2">MANAGER</option>
+                <option value="1">EMPLOYEE</option>
+            </select>
           </div>
-          <div class="form-group">
+          <!--<div class="form-group">
              <label for="createdAt">createdAt</label>
              <input type="text" ngModel name="createdAt" class="form-control" id="createdAt" placeholder="createdAt" required>
           </div>
           <div class="form-group">
             <label for="Manager">Manager</label>
             <input type="text"  ngModel name="manager_id" class="form-control" id="Manager" name="Manager" placeholder="Manager">
-         </div> 
+         </div> -->
           <div class="modal-footer">
              <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
@@ -172,4 +190,25 @@
     </div>
   </div>
   </div>
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="deleteModelLabel">Delete User</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <p>Are you sure you want to delete User {{deleteuser?.username}}?</p>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button (click)="deleteUser(deleteuser.username)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
 

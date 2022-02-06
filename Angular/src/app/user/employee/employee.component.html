@@ -1,45 +1,19 @@
-<table class="gridtable">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Project</th>
-        <th>Start Day</th>
-        <th>End Day</th>
-        <th>Period</th>
-        <th>Manager</th>
-      </tr>
-    </thead>
-    <br/>
-    <tbody>
-      <tr>
-        <td>
-          {{user.id}}
-        </td>
-        <td>
-          {{user.fullname}}
-        </td>
-        <td>
-          {{project.title}}
-        </td>
-        <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="time.date_start"/>
-        </td>
-        <td>
-          <input type="datetime-local" class="form-control form-date" [(ngModel)]="time.date_end"/>
-        </td>
-        <td>
-          {{time.date_of_project}}
-        </td>
-        <td>
-          {{user.manager_id}}
-          
-        </td>
-        <td>
-          <button class="btn btn-print" (click)="printPDF(user)">
-            Download PDF
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-xl bg-dark static-top">
+    <div class="container">
+      <h3 class="font-weight-bold text-white navbar-brand" >Employee Sapce</h3>
+      <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" routerLink="/employee">Home</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='./time'>Times</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink='./add-time'>Add Time</a></li>
+          <li class="nav-item"><button (click)="onLogout()">Logout</button></li>
+      </ul>
+    </div>
+    
+</nav>
+
+<br/>
+
+<router-outlet></router-outlet>
+</div>
+

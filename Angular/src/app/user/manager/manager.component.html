@@ -1,57 +1,25 @@
+<div class="min-h-full">
+  <h1 class="text-3xl font-bold">Manager Space</h1>
+  <nav class="bg-purple-800">
+    <ul class="flex items-center justify-between h-16">
+        
+        <li><a routerLink='./create-project'>Add Project</a></li>
+        <li><a routerLink='./add-user'>Add User</a></li>
+        <li><a routerLink='./users'>Users</a></li>
+        <li><a routerLink='./projects'>Projects</a></li>
+        <li><button (click)="onLogout()">Logout</button></li>
+    </ul>
+  </nav>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 
-<div>
-  <button class="btn btn-add" (click)="addEvent()">
-    Add new
-  </button>
+  <div>
+    <button class="btn btn-add" (click)="addEvent()">
+      Add new
+    </button>
+  </div>
 </div>
-<table class="gridtable">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Project</th>
-        <th>Start Day</th>
-        <th>End Day</th>
-        <th>Period</th>
-        <th>Employee</th>
-      </tr>
-    </thead>
-    <br/>
-    <tbody>
-      <tr *ngFor="let work of workspaces">
-        <td>
-          {{work.userId}}
-        </td>
-        <td>
-          {{work.name}}
-        </td>
-        <td>
-          <input type="text" class="form-control" [(ngModel)]="work.project">
-        </td>
-        <td>
-          {{work.start}}
-        </td>
-        <td>
-          {{work.end}}
-        </td>
-        <td>
-          {{work.period}}
-        </td>
-        <td>
-          {{work.employees}}
-          
-        </td>
-        <td>
-            <button class="btn btn-print" (click)="printPDF(work)">
-              Download PDF
-            </button>
-          </td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteEvent(work)">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+
   

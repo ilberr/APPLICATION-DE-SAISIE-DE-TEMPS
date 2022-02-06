@@ -34,16 +34,16 @@ export class SignupComponent implements OnInit {
     this.apiService.signUp(signUpForm.value).subscribe(
       (response:Register)=>{
         console.log(response);
+        signUpForm.reset();
+        this.router.navigate(['login'])
       },
       (error:HttpErrorResponse)=>{
         alert(error.message)
       }
       )
   }
-  public goToPage(pageName:string){
-    this.router.navigate([`${pageName}`]);
-  }
 
+}
 
   /*onSubmit() {
     const { Firstname, Lastname, username, password, email, role } = this.form;
@@ -60,4 +60,4 @@ export class SignupComponent implements OnInit {
   }*/
 
 
-}
+

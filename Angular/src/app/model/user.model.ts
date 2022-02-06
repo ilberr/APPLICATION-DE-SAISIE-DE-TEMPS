@@ -6,13 +6,12 @@ export interface User {
   lastname: string;
   fullname: string;
   enabled: boolean;
-  role: {
-    id:number;
-    label:string;
-  };
+  role: Role;
   createdAt: string;
-  manager_id: number;
+  manager : User;
+  tokenSignature:string
 }
+
 
 export interface Role{
   id:number;
@@ -24,6 +23,7 @@ export interface Register{
   firstname: string;
   lastname: string;
   email: string;
+  managerId: number;
   roleId: number;
 }
 
@@ -33,17 +33,29 @@ export interface Login{
 }
 
 export interface Project {
-  id: number;
+  id:number;
   title: string;
   description: string;
   manager_id: number;
 }
 
+export interface ProjectEntity{
+  id: number;
+  description: string;
+  title: string;
+  manager: User;
+}
+
 export interface Time{
   id: number;
+  dateEnd: Date,
+  dateOfProject: string;
+  dateStart: Date;
+  project:ProjectEntity;
+}
+
+export interface TimeRequest{
   date_start: Date;
   date_end: Date;
-  date_of_project: string;
-  project_id: number;
-  user_id: number;
+  projectId: number;
 }

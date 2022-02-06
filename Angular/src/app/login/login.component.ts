@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators,} from "@angular/forms";
+import { FormBuilder, FormGroup, NgForm,} from "@angular/forms";
 import { Router } from '@angular/router';
 import { User } from '../model/user.model';
-import {ApiService} from "../service/api.service";
+import { ApiService } from "../service/api.service";
+
 
 @Component({
   selector: 'app-login',
@@ -18,21 +19,6 @@ export class LoginComponent implements OnInit {
     private registerService:ApiService,
     private router : Router
   ) { }
-
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const loginPayload = {
-      username: this.loginForm.controls.username.value,
-      password: this.loginForm.controls.password.value
-    }
-    this.http.post<any>("http://localhost:8090/login",
-    loginPayload).subscribe((data:any) => {
-      alert(data.message);
-    });
-  }
-
   ngOnInit(): void {
   }
   
@@ -60,8 +46,5 @@ export class LoginComponent implements OnInit {
   public getRole(user:User):String{
     return user.role.label;
   }
-
-}
-
 
 }

@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { startOfDay, endOfDay, format} from 'date-fns';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-manager',
@@ -7,11 +10,12 @@ import { startOfDay, endOfDay, format} from 'date-fns';
   styleUrls: ['./manager.component.scss']
 })
 export class ManagerComponent implements OnInit {
+  token:string='';
 
-
-  constructor() { }
+  constructor(private router:Router, private registerService: ApiService) { }
 
   ngOnInit(): void {
+    console.log(localStorage);
   }
 
   deleteEvent(work:any){
@@ -22,37 +26,25 @@ export class ManagerComponent implements OnInit {
   addEvent(){
     
   }
+  onLogout(){
+    this.token = localStorage.getItem("token") || '';
+    this.registerService.logout(this.token).subscribe(
+      (res:string)=>{
+        alert("Logout Successful")
+        console.log(res)
+        localStorage.clear()
+        this.router.navigate(['login'])
+      },
+      (err:HttpErrorResponse)=>{
+        localStorage.clear()
+        this.router.navigate(['login'])        
+        
+      }
+    )
+  }
 
   printPDF(work:any){
     console.log("printPDF")
   }
-  workspaces: any[] = [
-    {
-      userId: 123456789,
-      name: 'Jack',
-      project: 'project01',
-      start: format(startOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      period: '4 months',
-      employees: ['Jack', 'Tom']
-    },
-    {
-      userId: 123456789,
-      name: 'Jack',
-      project: 'project02',
-      start: format(startOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      period: '3 months',
-      employees: ['Jack', 'Tom', 'Tony']
-    },
-    {
-      userId: 123456789,
-      name: 'Jack',
-      project: 'project03',
-      start: format(startOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      end: format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm'),
-      period: '1 months',
-      employees: ['Jack']
-    },
-  ];
+
 }

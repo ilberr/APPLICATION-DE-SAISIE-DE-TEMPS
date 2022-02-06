@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,12 +12,17 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { ApiService } from './service/api.service';
-import { TokenInterceptor } from './core/interceptor';
 import { SignupComponent } from './signup/signup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminComponent } from './user/admin/admin.component';
 import { ManagerComponent } from './user/manager/manager.component';
 import { EmployeeComponent } from './user/employee/employee.component';
+import { TimeComponent } from './time/time.component';
+import { ChoixProjetComponent } from './choix-projet/choix-projet.component';
+import { AddProjetComponent } from './add-projet/add-projet.component';
+import { AddUserManagerComponent } from './add-user-manager/add-user-manager.component';
+import { UsersOfManagerComponent } from './users-of-manager/users-of-manager.component';
+import { ProjectsOfManageComponent } from './projects-of-manage/projects-of-manage.component';
 
 
 @NgModule({
@@ -27,7 +34,13 @@ import { EmployeeComponent } from './user/employee/employee.component';
     SignupComponent,
     AdminComponent,
     ManagerComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    TimeComponent,
+    ChoixProjetComponent,
+    AddProjetComponent,
+    AddUserManagerComponent,
+    UsersOfManagerComponent,
+    ProjectsOfManageComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +49,13 @@ import { EmployeeComponent } from './user/employee/employee.component';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
     
   ],
-  providers: [ApiService, {provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi : true}],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

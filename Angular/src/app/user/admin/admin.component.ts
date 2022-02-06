@@ -13,11 +13,16 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  token:string='';
 
   constructor(public apiService: ApiService,public Adminservice: AdminService,private router: Router) { }
   public users: User[] ;
   public user: User= <User>{};
   public edituser: User;
+  public deleteuser: User;
+
+  
+
 
   ngOnInit(): void {
     this.getUsers();
@@ -59,6 +64,17 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+  public deleteUser(username: string): void {
+    this.Adminservice.deleteUser(username).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getUsers();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
 
   public onOpenModal(user: User= <User>{}, mode: string): void {
@@ -74,14 +90,33 @@ export class AdminComponent implements OnInit {
       this.edituser = user;
       button.setAttribute('data-target', '#updateUserModal');
     }
+    if (mode === 'delete') {
+      this.deleteuser = user;
+      button.setAttribute('data-target', '#deleteUserModal');
+    }
     container!.appendChild(button);
     button.click();
   }
 
-  
+  onLogout(){
+    this.token = localStorage.getItem("token") || '';
+    this.apiService.logout(this.token).subscribe(
+      (res:string)=>{
+        alert("Logout Successful")
+        console.log(res)
+        localStorage.clear()
+        this.router.navigate(['login'])
+      },
+      (err:HttpErrorResponse)=>{
+        localStorage.clear()
+        this.router.navigate(['login'])        
+        
+      }
+    )
+  }
 
   
-
+/*
   logout() {
     this.apiService.logout()
 
@@ -96,5 +131,6 @@ export class AdminComponent implements OnInit {
   }
   printPDF(user:any){
     console.log("printPDF")
-  }}
+  }*/
+}
   
