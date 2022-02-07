@@ -12,6 +12,15 @@ export interface User {
   tokenSignature:string
 }
 
+export interface Updateuser {
+  email: string;
+  firstname: string;
+  lastname: string;
+  enabled: boolean;
+  roleId: number;
+  managerId:number
+}
+
 
 export interface Role{
   id:number;

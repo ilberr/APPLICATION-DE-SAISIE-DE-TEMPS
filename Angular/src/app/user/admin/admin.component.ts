@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/model/user.model';
+import { Updateuser, User } from 'src/app/model/user.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-
 
 @Component({
   selector: 'app-admin',
@@ -16,10 +15,12 @@ export class AdminComponent implements OnInit {
   token:string='';
 
   constructor(public apiService: ApiService,public Adminservice: AdminService,private router: Router) { }
-  public users: User[] ;
-  public user: User= <User>{};
+  public users: User[] = [] ;
+  public user: User = <User>{};
   public edituser: User;
   public deleteuser: User;
+  public usernames: string[];
+  public listuser: User;
 
   
 
@@ -32,6 +33,7 @@ export class AdminComponent implements OnInit {
     this.Adminservice.getUsers().subscribe(
       (response: User[])  => {
         this.users = response;
+        console.log(this.users);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -42,12 +44,13 @@ export class AdminComponent implements OnInit {
   public searchUser(key: string): void {
     console.log(key);
     const results: User[] = [];
-    for (const user of this.users) {
+    for (let user of this.users) {
       if (user.username.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.firstname.toLowerCase().indexOf(key.toLowerCase()) !== -1
       || user.lastname.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-        results.push(user);
+      results.push(user);
+      console.log(user.username);
       }
     }
     this.users = results;
@@ -55,11 +58,18 @@ export class AdminComponent implements OnInit {
       this.getUsers();
     }
   }
-  public editUser(user: User): void {
-    this.Adminservice.updateUser(user).subscribe(
+  public Onconfirm(editForm: NgForm){
+    this.edituser=editForm.value;
+    console.log("confimed");
+  }
+  public editUser(updateuser: Updateuser): void {
+
+    this.Adminservice.updateUser(this.edituser.id, updateuser).subscribe(
       (response: User) => {
-        console.log(response);
+        this.edituser = response;
         this.getUsers();
+        alert("edited");
+        console.log(this.edituser);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -91,6 +101,22 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+  public deleteUsers(): void {
+    const usernames: string[]=[];
+    for (const user of this.users) {
+      usernames.push(user.username);
+      }
+
+    this.Adminservice.deleteUsers(usernames).subscribe(
+      (response: User[]) => {
+        console.log(response);
+        this.getUsers();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
 
   public onOpenModal(user: User= <User>{}, mode: string): void {
@@ -109,6 +135,9 @@ export class AdminComponent implements OnInit {
     if (mode === 'delete') {
       this.deleteuser = user;
       button.setAttribute('data-target', '#deleteUserModal');
+    }
+    if (mode === 'deleteall') {
+      button.setAttribute('data-target', '#deleteUsersModal');
     }
     container!.appendChild(button);
     button.click();

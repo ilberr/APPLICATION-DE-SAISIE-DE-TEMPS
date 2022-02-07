@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Register,Project, User } from '../model/user.model';
+import { Register,Project, User, Updateuser } from '../model/user.model';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Register,Project, User } from '../model/user.model';
 })
 export class AdminService {
   private baseUrl = 'http://localhost:8090';
-  public adminUrl = 'http://localhost:8090/admin/'+localStorage.getItem("token");
+  public adminUrl = 'http://localhost:8090/admin';
 
   constructor(private http: HttpClient) { }
 
@@ -21,12 +21,16 @@ export class AdminService {
     return this.http.post<User>(`${this.adminUrl}/add-user`,user);
   }
 
-  public updateUser(user: User) : Observable<User> {
-    return this.http.patch<User>(`${this.adminUrl}/edit-profile/`,user);
+  public updateUser(id: number, updateuser: Updateuser) : Observable<User> {
+    return this.http.patch<User>(`${this.adminUrl}/${localStorage.getItem("token")}/${id}`,{updateuser});
   }
 
   public deleteUser(username: string) : Observable<void> {
-    return this.http.delete<void>(`${this.adminUrl}/delete/${username}`);
+    return this.http.delete<void>(`${this.adminUrl}/${localStorage.getItem("token")}/delete/${username}`);
+  }
+
+  public deleteUsers(usernames: string[]) : Observable<User[]> {
+    return this.http.delete<User[]>(`${this.adminUrl}/${localStorage.getItem("token")}/delete-multi`);
   }
 
   public usersManager(managerId: number) : Observable<User[]> {
@@ -40,10 +44,5 @@ export class AdminService {
   public changeAff(managerId: number) : Observable<Project> {
     return this.http.patch<Project>(`${this.baseUrl}/admin/change-affec/${managerId}`, managerId);
   }
-
-  public getCR(userId:number,date:string){
-    return this.http.get<User[]>(`${this.adminUrl}/date/export/${userId}/${date}`)
-  }
-
 
 }
