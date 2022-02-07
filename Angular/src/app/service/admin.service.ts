@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Register,Project, User, Updateuser } from '../model/user.model';
+import { Project, User, Updateuser, AddUser } from '../model/user.model';
 
 
 @Injectable({
@@ -17,8 +17,8 @@ export class AdminService {
     return this.http.get<User[]>(`${this.baseUrl}/users/all`);
   }
 
-  public addUser(user: User) : Observable<User> {
-    return this.http.post<User>(`${this.adminUrl}/add-user`,user);
+  public addUser(user: AddUser) : Observable<User> {
+    return this.http.post<User>(`${this.adminUrl}/${localStorage.getItem("token")}/add-user`,user);
   }
 
   public updateUser(id: number, updateuser: Updateuser) : Observable<User> {

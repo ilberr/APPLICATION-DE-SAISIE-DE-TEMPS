@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
-import { Updateuser, User } from 'src/app/model/user.model';
+import { AddUser, Updateuser, User } from 'src/app/model/user.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +22,7 @@ export class AdminComponent implements OnInit {
   public deleteuser: User;
   public usernames: string[];
   public listuser: User;
+  private addAUser: AddUser;
 
   
 
@@ -77,8 +79,10 @@ export class AdminComponent implements OnInit {
     );
   }
   public addUser(addForm: NgForm): void {
+    this.addAUser = addForm.value; 
+    this.addAUser.password = "123456";
     document.getElementById('add-user-form')!.click();
-    this.Adminservice.addUser(addForm.value).subscribe(
+    this.Adminservice.addUser(this.addAUser).subscribe(
       (response: User) => {
         console.log(response);
         this.getUsers();
